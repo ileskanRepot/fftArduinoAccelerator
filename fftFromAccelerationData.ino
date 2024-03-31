@@ -28,7 +28,7 @@ float *DATA_LIST_POINTER = DATA_LIST.toPaddedArray();
 const int FREQ = 10;
 
 // Initialize Arduino FFT object. Set pointer to real data list, imaginary data list, data length and data frequency
-ArduinoFFT<float> FFT = ArduinoFFT<float>(DATA_LIST_POINTER, IMG_ARR, PADDED_ARR_LEN, FREQ);
+ArduinoFFT<float> FFT = ArduinoFFT<float>();
 
 void setup() {
   Serial.begin(115200);
@@ -56,7 +56,7 @@ void setup() {
    @param num number which we want to multiply
    @return num * num
 */
-float pow2(float num){
+float pow2(float num) {
   return num * num;
 }
 
@@ -66,7 +66,9 @@ float pow2(float num){
 
    @return the short time "energy"
 */
-float calculateNormalizedShortTimeEnergy() {
+float calculateNormalizedShortTimeEnergy(float* realArr, float* imgArr, int len) {
+  // Set new pointers and length 
+  FFT.setArrays(realArr, imgArr, len);
   // Compute Fast Fourier Transform
   FFT.compute(FFTDirection::Forward);
 
@@ -81,7 +83,7 @@ float calculateNormalizedShortTimeEnergy() {
 
   // Normalize the energy
   float normalizedEnergy = energy / pow2(PADDED_ARR_LEN / 2);
-  
+
   return normalizedEnergy;
 }
 
@@ -89,9 +91,9 @@ void loop() {
 
   // Initialize three axis acceleration variables
   float ax, ay, az;
-  
+
   // Read to the three axis acceleration variables
-  fabo_9axis.readAccelXYZ(&ax,&ay,&az);
+  fabo_9axis.readAccelXYZ(&ax, &ay, &az);
 
   // Set z-axis acceleration to rolling Array
   DATA_LIST.set(az);
@@ -105,12 +107,12 @@ void loop() {
   DATA_LIST.toPaddedArray();
 
   // Calculate the short time energy
-  float shortTimeEnergy = calculateNormalizedShortTimeEnergy();
+  float shortTimeEnergy = calculateNormalizedShortTimeEnergy(DATA_LIST_POINTER, IMG_ARR, PADDED_ARR_LEN);
 
   // Print short time energy and velocity
   Serial.print(shortTimeEnergy);
   Serial.print(", ");
   Serial.println(pow2(az));
-  
+
   delay(FREQ);
 }
