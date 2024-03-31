@@ -47,7 +47,3 @@ void RollingList::set(float num) {
   arr[curId] = num;
   curId = (curId + 1) % leng;
 }
-
-void RollingList::test() {
-  Serial.println("TESTI TANE");
-}
