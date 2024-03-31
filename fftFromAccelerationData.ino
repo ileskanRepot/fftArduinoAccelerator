@@ -19,7 +19,7 @@
 
 FaBo9Axis fabo_9axis;
 
-
+// Set static global variables
 const int PADDED_ARR_LEN = 128;
 float IMG_ARR[PADDED_ARR_LEN];
 
@@ -51,6 +51,11 @@ void setup() {
   Serial.println("Energy, Az");
 }
 
+/**
+   Simple function to multiply number by itself
+   @param num number which we want to multiply
+   @return num * num
+*/
 float pow2(float num){
   return num * num;
 }
