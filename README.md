@@ -31,4 +31,4 @@ $2\text{KiB} - (2 \cdot 128 \cdot 4\text{B} + 100 \cdot 4 \text{B}) = 624 \text{
 
 ## Picture of my Arduino setup
 
-!(Picture of my Arduino setup)[https://raw.githubusercontent.com/ileskanRepot/fftArduinoAccelerator/main/setup.jpg]
+![Picture of my Arduino setup](https://raw.githubusercontent.com/ileskanRepot/fftArduinoAccelerator/main/setup.jpg)
