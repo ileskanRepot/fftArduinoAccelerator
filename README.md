@@ -28,3 +28,7 @@ $2\text{KiB} - (2 \cdot 128 \cdot 4\text{B} + 100 \cdot 4 \text{B}) = 624 \text{
 
 - [Size of float](https://www.arduino.cc/reference/en/language/variables/data-types/float/)
 - [Size of memory](https://wiki-content.arduino.cc/en/Tutorial/Foundations/Memory)
+
+## Picture of my Arduino setup
+
+!(Picture of my Arduino setup)[https://raw.githubusercontent.com/ileskanRepot/fftArduinoAccelerator/main/setup.jpg]
